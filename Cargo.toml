@@ -1,7 +1,9 @@
 [package]
 name = "brainhug"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["sn99 <siddharthn.099@gmail.com>"]
 edition = "2018"
-
-[dependencies]
+description = "A simple brainf*ck translator"
+repository = "https://github.com/sn99/brainhug"
+license = "MIT"
+readme = "README.md"
