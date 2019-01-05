@@ -1,9 +1,10 @@
 [package]
 name = "brainhug"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["sn99 <siddharthn.099@gmail.com>"]
 edition = "2018"
 description = "A simple brainf*ck translator"
 repository = "https://github.com/sn99/brainhug"
 license = "MIT"
 readme = "README.md"
+homepage = "https://sn99.github.io/brainhug/"

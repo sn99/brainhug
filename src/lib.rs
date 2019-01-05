@@ -29,25 +29,21 @@ SOFTWARE.
 //!
 //! #### Current languages covered are :
 //!- [x] C
+//!- [x] C++
 
 pub mod c;
+pub mod cpp;
 
+/// tokens for brainf*ck
 #[derive(Debug, PartialEq, Copy, Clone)]
 enum Token {
-    Add,
-    // +
-    Sub,
-    // -
-    Right,
-    // >
-    Left,
-    // <
-    Read,
-    // ,
-    Write,
-    // .
-    BeginLoop,
-    // [
+    Add,        // +
+    Sub,        // -
+    Right,      // >
+    Left,       // <
+    Read,       // ,
+    Write,      // .
+    BeginLoop,  // [
     EndLoop,    // ]
 }
 
@@ -75,19 +71,27 @@ fn tokenize(input: &str) -> Vec<Token> {
     tokens
 }
 
+/// languages covered by the crate
+/// Use `Lang::` to  specify a language to be used
 pub enum Lang {
-    C // C language
+    C,    // C language
+    Cpp   // C++ language
+
 }
 
 use self::Lang::*;
 
-/// main function
+/// main function to be called in `main.rs`
 pub fn generate(lang: Lang, input: &str) -> String {
     match lang {
         C => {
             use crate::c::brains;
             brains(input).to_string()
-        }
+        },
+        Cpp => {
+            use crate::cpp::brains;
+            brains(input).to_string()
+        },
         _ => {
             input.to_string()
         }
