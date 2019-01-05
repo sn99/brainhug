@@ -8,8 +8,9 @@
 
 #### Current languages covered are :
 - [x] C
+- [x] C++
 
-##### Why the name brainhug ?
+#### Why the name brainhug ?
 Inspired from [link](https://lists.freedesktop.org/archives/dri-devel/2018-November/198581.html)
 
 ## Usage
@@ -18,7 +19,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-brainhug = "0.2.0"
+brainhug = "0.2.1"
 ```
 
 and this to your crate root:
@@ -35,10 +36,129 @@ extern crate brainhug;
 use brainhug::Lang;
 
 fn main() {
-    // will print `Hello, World!`
+    // will print `Hello World!`
     let input = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
 
+    // `brainhug::generate` will generate a `String`
     println!("{}", brainhug::generate(Lang::C, input));
+}
+```
+
+#### It will produce
+
+```c
+#include "stdio.h"
+
+int main() {
+    char tape[20000] = {0};
+    char *ptr = tape;
+
+    ++*ptr;
+    ++*ptr;
+    ++*ptr;
+    ++*ptr;
+    ++*ptr;
+    ++*ptr;
+    ++*ptr;
+    ++*ptr;
+    while (*ptr) {
+        ++ptr;
+        ++*ptr;
+        ++*ptr;
+        ++*ptr;
+        ++*ptr;
+        while (*ptr) {
+            ++ptr;
+            ++*ptr;
+            ++*ptr;
+            ++ptr;
+            ++*ptr;
+            ++*ptr;
+            ++*ptr;
+            ++ptr;
+            ++*ptr;
+            ++*ptr;
+            ++*ptr;
+            ++ptr;
+            ++*ptr;
+            --ptr;
+            --ptr;
+            --ptr;
+            --ptr;
+            --*ptr;
+        }
+        ++ptr;
+        ++*ptr;
+        ++ptr;
+        ++*ptr;
+        ++ptr;
+        --*ptr;
+        ++ptr;
+        ++ptr;
+        ++*ptr;
+        while (*ptr) {
+            --ptr;
+        }
+        --ptr;
+        --*ptr;
+    }
+    ++ptr;
+    ++ptr;
+    putchar(*ptr);
+    ++ptr;
+    --*ptr;
+    --*ptr;
+    --*ptr;
+    putchar(*ptr);
+    ++*ptr;
+    ++*ptr;
+    ++*ptr;
+    ++*ptr;
+    ++*ptr;
+    ++*ptr;
+    ++*ptr;
+    putchar(*ptr);
+    putchar(*ptr);
+    ++*ptr;
+    ++*ptr;
+    ++*ptr;
+    putchar(*ptr);
+    ++ptr;
+    ++ptr;
+    putchar(*ptr);
+    --ptr;
+    --*ptr;
+    putchar(*ptr);
+    --ptr;
+    putchar(*ptr);
+    ++*ptr;
+    ++*ptr;
+    ++*ptr;
+    putchar(*ptr);
+    --*ptr;
+    --*ptr;
+    --*ptr;
+    --*ptr;
+    --*ptr;
+    --*ptr;
+    putchar(*ptr);
+    --*ptr;
+    --*ptr;
+    --*ptr;
+    --*ptr;
+    --*ptr;
+    --*ptr;
+    --*ptr;
+    --*ptr;
+    putchar(*ptr);
+    ++ptr;
+    ++ptr;
+    ++*ptr;
+    putchar(*ptr);
+    ++ptr;
+    ++*ptr;
+    ++*ptr;
+    putchar(*ptr);
 }
 ```
 
