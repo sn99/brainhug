@@ -37,14 +37,14 @@ pub mod cpp;
 /// tokens for brainf*ck
 #[derive(Debug, PartialEq, Copy, Clone)]
 enum Token {
-    Add,        // +
-    Sub,        // -
-    Right,      // >
-    Left,       // <
-    Read,       // ,
-    Write,      // .
-    BeginLoop,  // [
-    EndLoop,    // ]
+    Add,       // +
+    Sub,       // -
+    Right,     // >
+    Left,      // <
+    Read,      // ,
+    Write,     // .
+    BeginLoop, // [
+    EndLoop,   // ]
 }
 
 use self::Token::*;
@@ -53,8 +53,8 @@ use self::Token::*;
 fn tokenize(input: &str) -> Vec<Token> {
     let mut tokens = Vec::<Token>::new();
 
-    let mut chars = input.chars();
-    while let Some(c) = chars.next() {
+    let chars = input.chars();
+    for c in chars {
         match c {
             '+' => tokens.push(Add),
             '-' => tokens.push(Sub),
@@ -74,9 +74,8 @@ fn tokenize(input: &str) -> Vec<Token> {
 /// languages covered by the crate
 /// Use `Lang::` to  specify a language to be used
 pub enum Lang {
-    C,    // C language
-    Cpp   // C++ language
-
+    C,   // C language
+    Cpp, // C++ language
 }
 
 use self::Lang::*;
@@ -87,13 +86,10 @@ pub fn generate(lang: Lang, input: &str) -> String {
         C => {
             use crate::c::brains;
             brains(input).to_string()
-        },
+        }
         Cpp => {
             use crate::cpp::brains;
             brains(input).to_string()
-        },
-        _ => {
-            input.to_string()
         }
     }
 }

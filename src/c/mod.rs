@@ -23,8 +23,8 @@ SOFTWARE.
 */
 
 use super::tokenize;
-use super::Token::*;
 use super::Token;
+use super::Token::*;
 
 fn generate(tokens: &[Token]) -> String {
     let mut output = String::from(include_str!("preface.c"));
@@ -75,7 +75,7 @@ fn generate(tokens: &[Token]) -> String {
                 output.push_str("putchar(*ptr);\n");
             }
             BeginLoop => {
-                indent = indent + 1;
+                indent += 1;
 
                 for _ in 0..(indent - 1) {
                     output.push_str("\t");
@@ -84,7 +84,7 @@ fn generate(tokens: &[Token]) -> String {
                 output.push_str("while (*ptr) {\n");
             }
             EndLoop => {
-                indent = indent - 1;
+                indent -= 1;
 
                 for _ in 0..indent {
                     output.push_str("\t");
@@ -104,7 +104,5 @@ fn generate(tokens: &[Token]) -> String {
 pub fn brains(input: &str) -> String {
     let tokens = tokenize(input);
 
-    let generated_code = generate(&tokens);
-
-    generated_code
+    generate(&tokens)
 }
