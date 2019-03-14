@@ -1,6 +1,7 @@
 # brainhug
 
 [![Build Status](https://travis-ci.com/sn99/brainhug.svg?branch=master)](https://travis-ci.com/sn99/brainhug)
+[![Build status](https://ci.appveyor.com/api/projects/status/23dcr0k5u244qd3e?svg=true)](https://ci.appveyor.com/project/sn99/brainhug)
 [![crate](https://img.shields.io/badge/crates.io-1.0-orange.svg)](https://crates.io/crates/brainhug)
 [![documentation](https://img.shields.io/badge/docs-1.0-blue.svg)](https://docs.rs/brainhug)
 
