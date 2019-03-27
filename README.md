@@ -2,8 +2,8 @@
 
 [![Build Status](https://travis-ci.com/sn99/brainhug.svg?branch=master)](https://travis-ci.com/sn99/brainhug)
 [![Build status](https://ci.appveyor.com/api/projects/status/23dcr0k5u244qd3e?svg=true)](https://ci.appveyor.com/project/sn99/brainhug)
-[![crate](https://img.shields.io/badge/crates.io-1.0-orange.svg)](https://crates.io/crates/brainhug)
-[![documentation](https://img.shields.io/badge/docs-1.0-blue.svg)](https://docs.rs/brainhug)
+[![Crates.io Download](https://img.shields.io/crates/d/brainhug.svg)](https://crates.io/crates/brainhug)
+[![crate](https://img.shields.io/crates/v/brainhug.svg)](https://crates.io/crates/brainhug)
 
 `brainhug` is a crate that is used to interpret brainf*ck code to any other language
 
@@ -29,6 +29,9 @@ and this to your crate root:
 extern crate brainhug;
 use brainhug::Lang;
 ```
+
+## Contributing
+Read [contributing](CONTRIBUTING.md) for Details
 
 ## Example
 

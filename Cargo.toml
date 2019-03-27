@@ -9,3 +9,13 @@ license = "MIT"
 readme = "README.md"
 homepage = "https://sn99.github.io/brainhug/"
 keywords = ["brainfuck", "interpreter"]
+
+[badges]
+travis-ci = { repository = "sn99/brainhug", branch = "master" }
+
+[dev-dependencies]
+criterion = "0.2.10"
+
+[[bench]]
+name = "benchmark"
+harness = false
