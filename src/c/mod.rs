@@ -29,38 +29,70 @@ use super::Token::*;
 fn generate(tokens: &[Token]) -> String {
     let mut output = String::from(include_str!("preface.c"));
     let mut indent = 1;
+    let mut aritms = 0;
+    let mut arrows = 0;
 
     for &token in tokens {
         match token {
             Add => {
-                for _ in 0..indent {
-                    output.push_str("\t");
+                if arrows != 0 {
+                    for _ in 0..indent {
+                        output.push_str("\t");
+                    }
+                    push_arrows(&mut output, arrows);
+                    arrows = 0;
                 }
                 // Increment the value at the selected cell
-                output.push_str("++*ptr;\n");
+                aritms += 1;
             }
             Sub => {
-                for _ in 0..indent {
-                    output.push_str("\t");
+                if arrows != 0 {
+                    for _ in 0..indent {
+                        output.push_str("\t");
+                    }
+                    push_arrows(&mut output, arrows);
+                    arrows = 0;
                 }
                 // Decrement the value at the selected cell
-                output.push_str("--*ptr;\n");
+                aritms -= 1;
             }
             Right => {
-                for _ in 0..indent {
-                    output.push_str("\t");
+                if aritms != 0 {
+                    for _ in 0..indent {
+                        output.push_str("\t");
+                    }
+                    push_aritms(&mut output, aritms);
+                    aritms = 0;
                 }
                 // Change our selected cell to the next to the right
-                output.push_str("++ptr;\n");
+                arrows += 1;
             }
             Left => {
-                for _ in 0..indent {
-                    output.push_str("\t");
+                if aritms != 0 {
+                    for _ in 0..indent {
+                        output.push_str("\t");
+                    }
+                    push_aritms(&mut output, aritms);
+                    aritms = 0;
                 }
                 // Change our selected cell to the next to the left
-                output.push_str("--ptr;\n");
+                arrows -= 1;
             }
             Read => {
+                if aritms != 0 {
+                    for _ in 0..indent {
+                        output.push_str("\t");
+                    }
+                    push_aritms(&mut output, aritms);
+                    aritms = 0;
+                } else if arrows != 0 {
+                    for _ in 0..indent {
+                        output.push_str("\t");
+                    }
+                    push_arrows(&mut output, arrows);
+                    arrows = 0;
+                }
+
                 for _ in 0..indent {
                     output.push_str("\t");
                 }
@@ -68,6 +100,19 @@ fn generate(tokens: &[Token]) -> String {
                 output.push_str("*ptr = getchar();\n");
             }
             Write => {
+                if aritms != 0 {
+                    for _ in 0..indent {
+                        output.push_str("\t");
+                    }
+                    push_aritms(&mut output, aritms);
+                    aritms = 0;
+                } else if arrows != 0 {
+                    for _ in 0..indent {
+                        output.push_str("\t");
+                    }
+                    push_arrows(&mut output, arrows);
+                    arrows = 0;
+                }
                 for _ in 0..indent {
                     output.push_str("\t");
                 }
@@ -75,6 +120,19 @@ fn generate(tokens: &[Token]) -> String {
                 output.push_str("putchar(*ptr);\n");
             }
             BeginLoop => {
+                if aritms != 0 {
+                    for _ in 0..indent {
+                        output.push_str("\t");
+                    }
+                    push_aritms(&mut output, aritms);
+                    aritms = 0;
+                } else if arrows != 0 {
+                    for _ in 0..indent {
+                        output.push_str("\t");
+                    }
+                    push_arrows(&mut output, arrows);
+                    arrows = 0;
+                }
                 indent += 1;
 
                 for _ in 0..(indent - 1) {
@@ -84,6 +142,19 @@ fn generate(tokens: &[Token]) -> String {
                 output.push_str("while (*ptr) {\n");
             }
             EndLoop => {
+                if aritms != 0 {
+                    for _ in 0..indent {
+                        output.push_str("\t");
+                    }
+                    push_aritms(&mut output, aritms);
+                    aritms = 0;
+                } else if arrows != 0 {
+                    for _ in 0..indent {
+                        output.push_str("\t");
+                    }
+                    push_arrows(&mut output, arrows);
+                    arrows = 0;
+                }
                 indent -= 1;
 
                 for _ in 0..indent {
@@ -98,6 +169,22 @@ fn generate(tokens: &[Token]) -> String {
     output.push_str("}\n");
 
     output
+}
+
+fn push_aritms(out: &mut String, aritms: isize) {
+    if aritms > 0 {
+        out.push_str(format!("*ptr += {};\n", aritms).as_str());
+    } else {
+        out.push_str(format!("*ptr -= {};\n", aritms * -1).as_str());
+    }
+}
+
+fn push_arrows(out: &mut String, arrows: isize) {
+    if arrows > 0 {
+        out.push_str(format!("ptr += {};\n", arrows).as_str());
+    } else {
+        out.push_str(format!("ptr -= {};\n", arrows * -1).as_str());
+    }
 }
 
 /// generate string of C code from a Brainf*ck string
