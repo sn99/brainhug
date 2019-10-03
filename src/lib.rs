@@ -30,9 +30,11 @@ SOFTWARE.
 //! #### Current languages covered are :
 //!- [x] C
 //!- [x] C++
+//!- [x] lua
 
 pub mod c;
 pub mod cpp;
+pub mod lua;
 
 /// tokens for brainf*ck
 #[derive(Debug, PartialEq, Copy, Clone)]
@@ -76,6 +78,7 @@ fn tokenize(input: &str) -> Vec<Token> {
 pub enum Lang {
     C,   // C language
     Cpp, // C++ language
+    Lua, // lua language
 }
 
 use self::Lang::*;
@@ -89,6 +92,10 @@ pub fn generate(lang: Lang, input: &str) -> String {
         }
         Cpp => {
             use crate::cpp::brains;
+            brains(input).to_string()
+        }
+        Lua => {
+            use crate::lua::brains;
             brains(input).to_string()
         }
     }
