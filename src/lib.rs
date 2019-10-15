@@ -30,9 +30,11 @@ SOFTWARE.
 //! #### Current languages covered are :
 //!- [x] C
 //!- [x] C++
+//!- [x] Rust
 
 pub mod c;
 pub mod cpp;
+pub mod rust;
 
 /// tokens for brainf*ck
 #[derive(Debug, PartialEq, Copy, Clone)]
@@ -74,8 +76,9 @@ fn tokenize(input: &str) -> Vec<Token> {
 /// languages covered by the crate
 /// Use `Lang::` to  specify a language to be used
 pub enum Lang {
-    C,   // C language
-    Cpp, // C++ language
+    C,    // C language
+    Cpp,  // C++ language
+    Rust, // Rust language
 }
 
 use self::Lang::*;
@@ -90,6 +93,10 @@ pub fn generate(lang: Lang, input: &str) -> String {
         Cpp => {
             use crate::cpp::brains;
             brains(input).to_string()
-        }
+        },
+        Rust => {
+            use crate::rust::brains;
+            brains(input).to_string()
+        },
     }
 }
