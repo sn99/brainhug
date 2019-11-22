@@ -13,6 +13,10 @@ fn bench(c: &mut Criterion) {
         let brainfuck_string = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
         b.iter(|| brainhug::generate(Lang::C, brainfuck_string))
     });
+    c.bench_function("Python", |b| {
+        let brainfuck_string = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
+        b.iter(|| brainhug::generate(Lang::Python, brainfuck_string))
+    });
 }
 
 criterion_group!(benches, bench);
