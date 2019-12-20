@@ -21,7 +21,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-brainhug = "0.2.1"
+brainhug = "0.3.0"
 ```
 
 and this to your crate root:
@@ -57,113 +57,65 @@ fn main() {
 int main() {
     char tape[20000] = {0};
     char *ptr = tape;
-
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    while (*ptr) {
-        ++ptr;
-        ++*ptr;
-        ++*ptr;
-        ++*ptr;
-        ++*ptr;
+        *ptr += 8;
         while (*ptr) {
-            ++ptr;
-            ++*ptr;
-            ++*ptr;
-            ++ptr;
-            ++*ptr;
-            ++*ptr;
-            ++*ptr;
-            ++ptr;
-            ++*ptr;
-            ++*ptr;
-            ++*ptr;
-            ++ptr;
-            ++*ptr;
-            --ptr;
-            --ptr;
-            --ptr;
-            --ptr;
-            --*ptr;
+                ptr += 1;
+                *ptr += 4;
+                while (*ptr) {
+                        ptr += 1;
+                        *ptr += 2;
+                        ptr += 1;
+                        *ptr += 3;
+                        ptr += 1;
+                        *ptr += 3;
+                        ptr += 1;
+                        *ptr += 1;
+                        ptr -= 4;
+                        *ptr -= 1;
+                }
+                ptr += 1;
+                *ptr += 1;
+                ptr += 1;
+                *ptr += 1;
+                ptr += 1;
+                *ptr -= 1;
+                ptr += 2;
+                *ptr += 1;
+                while (*ptr) {
+                        ptr -= 1;
+                }
+                ptr -= 1;
+                *ptr -= 1;
         }
-        ++ptr;
-        ++*ptr;
-        ++ptr;
-        ++*ptr;
-        ++ptr;
-        --*ptr;
-        ++ptr;
-        ++ptr;
-        ++*ptr;
-        while (*ptr) {
-            --ptr;
-        }
-        --ptr;
-        --*ptr;
-    }
-    ++ptr;
-    ++ptr;
-    putchar(*ptr);
-    ++ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    putchar(*ptr);
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    putchar(*ptr);
-    putchar(*ptr);
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    putchar(*ptr);
-    ++ptr;
-    ++ptr;
-    putchar(*ptr);
-    --ptr;
-    --*ptr;
-    putchar(*ptr);
-    --ptr;
-    putchar(*ptr);
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    putchar(*ptr);
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    putchar(*ptr);
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    putchar(*ptr);
-    ++ptr;
-    ++ptr;
-    ++*ptr;
-    putchar(*ptr);
-    ++ptr;
-    ++*ptr;
-    ++*ptr;
-    putchar(*ptr);
+        ptr += 2;
+        putchar(*ptr);
+        ptr += 1;
+        *ptr -= 3;
+        putchar(*ptr);
+        *ptr += 7;
+        putchar(*ptr);
+        putchar(*ptr);
+        *ptr += 3;
+        putchar(*ptr);
+        ptr += 2;
+        putchar(*ptr);
+        ptr -= 1;
+        *ptr -= 1;
+        putchar(*ptr);
+        ptr -= 1;
+        putchar(*ptr);
+        *ptr += 3;
+        putchar(*ptr);
+        *ptr -= 6;
+        putchar(*ptr);
+        *ptr -= 8;
+        putchar(*ptr);
+        ptr += 2;
+        *ptr += 1;
+        putchar(*ptr);
+        ptr += 1;
+        *ptr += 2;
+        putchar(*ptr);
 }
 ```
 

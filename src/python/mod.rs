@@ -26,7 +26,7 @@ use super::tokenize;
 use super::Token;
 use super::Token::*;
 
-const BASE_INDENT: &'static str = "    ";
+const BASE_INDENT: &str = "    ";
 
 enum State {
     Alter(i64),
@@ -41,13 +41,13 @@ fn get_indent(indent: u32) -> String {
     indent_str
 }
 
-fn flush(state: &State, output: &mut String, indent: &String) {
+fn flush(state: &State, output: &mut String, indent: &str) {
     output.push_str(&indent[..]);
     match state {
-        State::Alter(x) if x > &0 => output.push_str(&format!("tape[index] += {}\n", x)[..]),
-        State::Alter(x) if x < &0 => output.push_str(&format!("tape[index] -= {}\n", -x)[..]),
-        State::Move(x) if x > &0 => output.push_str(&format!("index += {}\n", x)[..]),
-        State::Move(x) if x < &0 => output.push_str(&format!("index -= {}\n", -x)[..]),
+        State::Alter(x) if *x > 0 => output.push_str(&format!("tape[index] += {}\n", x)[..]),
+        State::Alter(x) if *x < 0 => output.push_str(&format!("tape[index] -= {}\n", -x)[..]),
+        State::Move(x) if *x > 0 => output.push_str(&format!("index += {}\n", x)[..]),
+        State::Move(x) if *x < 0 => output.push_str(&format!("index -= {}\n", -x)[..]),
         _ => (), // x == 0, which is a no-op
     }
 }

@@ -78,7 +78,7 @@ fn generate(tokens: &[Token]) -> String {
                 // Change our selected cell to the next to the left
                 arrows -= 1;
             }
-            Read => {
+            others => {
                 if aritms != 0 {
                     for _ in 0..indent {
                         output.push_str("\t");
@@ -92,76 +92,41 @@ fn generate(tokens: &[Token]) -> String {
                     push_arrows(&mut output, arrows);
                     arrows = 0;
                 }
+                match others {
+                    EndLoop => {
+                        indent -= 1;
 
-                for _ in 0..indent {
-                    output.push_str("\t");
-                }
-                // Read a single character into the selected cell
-                output.push_str("*ptr = getchar();\n");
-            }
-            Write => {
-                if aritms != 0 {
-                    for _ in 0..indent {
-                        output.push_str("\t");
+                        for _ in 0..indent {
+                            output.push_str("\t");
+                        }
+                        // Close a loop
+                        output.push_str("}\n");
                     }
-                    push_aritms(&mut output, aritms);
-                    aritms = 0;
-                } else if arrows != 0 {
-                    for _ in 0..indent {
-                        output.push_str("\t");
+                    Read => {
+                        for _ in 0..indent {
+                            output.push_str("\t");
+                        }
+                        // Read a single character into the selected cell
+                        output.push_str("*ptr = getchar();\n");
                     }
-                    push_arrows(&mut output, arrows);
-                    arrows = 0;
-                }
-                for _ in 0..indent {
-                    output.push_str("\t");
-                }
-                // Print the character at the selected cell
-                output.push_str("putchar(*ptr);\n");
-            }
-            BeginLoop => {
-                if aritms != 0 {
-                    for _ in 0..indent {
-                        output.push_str("\t");
+                    Write => {
+                        for _ in 0..indent {
+                            output.push_str("\t");
+                        }
+                        // Print the character at the selected cell
+                        output.push_str("putchar(*ptr);\n");
                     }
-                    push_aritms(&mut output, aritms);
-                    aritms = 0;
-                } else if arrows != 0 {
-                    for _ in 0..indent {
-                        output.push_str("\t");
-                    }
-                    push_arrows(&mut output, arrows);
-                    arrows = 0;
-                }
-                indent += 1;
+                    BeginLoop => {
+                        indent += 1;
 
-                for _ in 0..(indent - 1) {
-                    output.push_str("\t");
-                }
-                // Begin a loop at the current cell
-                output.push_str("while (*ptr) {\n");
-            }
-            EndLoop => {
-                if aritms != 0 {
-                    for _ in 0..indent {
-                        output.push_str("\t");
+                        for _ in 0..(indent - 1) {
+                            output.push_str("\t");
+                        }
+                        // Begin a loop at the current cell
+                        output.push_str("while (*ptr) {\n");
                     }
-                    push_aritms(&mut output, aritms);
-                    aritms = 0;
-                } else if arrows != 0 {
-                    for _ in 0..indent {
-                        output.push_str("\t");
-                    }
-                    push_arrows(&mut output, arrows);
-                    arrows = 0;
+                    _ => {}
                 }
-                indent -= 1;
-
-                for _ in 0..indent {
-                    output.push_str("\t");
-                }
-                // Close a loop
-                output.push_str("}\n");
             }
         }
     }
@@ -175,7 +140,7 @@ fn push_aritms(out: &mut String, aritms: isize) {
     if aritms > 0 {
         out.push_str(format!("*ptr += {};\n", aritms).as_str());
     } else {
-        out.push_str(format!("*ptr -= {};\n", aritms * -1).as_str());
+        out.push_str(format!("*ptr -= {};\n", -aritms).as_str());
     }
 }
 
@@ -183,7 +148,7 @@ fn push_arrows(out: &mut String, arrows: isize) {
     if arrows > 0 {
         out.push_str(format!("ptr += {};\n", arrows).as_str());
     } else {
-        out.push_str(format!("ptr -= {};\n", arrows * -1).as_str());
+        out.push_str(format!("ptr -= {};\n", -arrows).as_str());
     }
 }
 

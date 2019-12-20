@@ -87,15 +87,15 @@ pub fn generate(lang: Lang, input: &str) -> String {
     match lang {
         C => {
             use crate::c::brains;
-            brains(input).to_string()
+            brains(input)
         }
         Cpp => {
             use crate::cpp::brains;
-            brains(input).to_string()
+            brains(input)
         }
         Python => {
             use crate::python::brains;
-            brains(input).to_string()
+            brains(input)
         }
     }
 }
