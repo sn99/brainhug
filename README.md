@@ -4,6 +4,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/23dcr0k5u244qd3e?svg=true)](https://ci.appveyor.com/project/sn99/brainhug)
 [![Crates.io Download](https://img.shields.io/crates/d/brainhug.svg)](https://crates.io/crates/brainhug)
 [![crate](https://img.shields.io/crates/v/brainhug.svg)](https://crates.io/crates/brainhug)
+[![Documentation](https://docs.rs/brainhug/badge.svg)](https://docs.rs/brainhug) 
 
 `brainhug` is a crate that is used to interpret brainf*ck code to any other language
 
