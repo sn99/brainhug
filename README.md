@@ -11,6 +11,7 @@
 - [x] C
 - [x] C++
 - [x] Python
+- [x] Golang
 
 #### Why the name brainhug ?
 Inspired from [link](https://lists.freedesktop.org/archives/dri-devel/2018-November/198581.html)

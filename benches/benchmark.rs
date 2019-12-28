@@ -17,6 +17,10 @@ fn bench(c: &mut Criterion) {
         let brainfuck_string = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
         b.iter(|| brainhug::generate(Lang::Python, brainfuck_string))
     });
+    c.bench_function("Golang", |b| {
+        let brainfuck_string = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
+        b.iter(|| brainhug::generate(Lang::Golang, brainfuck_string))
+    });
 }
 
 criterion_group!(benches, bench);

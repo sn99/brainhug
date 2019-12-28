@@ -30,10 +30,13 @@ SOFTWARE.
 //! #### Current languages covered are :
 //!- [x] C
 //!- [x] C++
+//!- [x] Python
+//!- [x] Golang
 
 pub mod c;
 pub mod cpp;
 pub mod python;
+pub mod golang;
 
 /// tokens for brainf*ck
 #[derive(Debug, PartialEq, Copy, Clone)]
@@ -78,6 +81,7 @@ pub enum Lang {
     C,      // C language
     Cpp,    // C++ language
     Python, // Python language
+    Golang, // Golang language
 }
 
 use self::Lang::*;
@@ -95,6 +99,10 @@ pub fn generate(lang: Lang, input: &str) -> String {
         }
         Python => {
             use crate::python::brains;
+            brains(input)
+        }
+        Golang => {
+            use crate::golang::brains;
             brains(input)
         }
     }
