@@ -23,7 +23,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-brainhug = "0.3.0"
+brainhug = "*"
 ```
 
 and this to your crate root:
