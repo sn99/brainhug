@@ -37,6 +37,7 @@ pub mod c;
 pub mod cpp;
 pub mod python;
 pub mod golang;
+pub mod haskell;
 
 /// tokens for brainf*ck
 #[derive(Debug, PartialEq, Copy, Clone)]
@@ -78,10 +79,11 @@ fn tokenize(input: &str) -> Vec<Token> {
 /// languages covered by the crate
 /// Use `Lang::` to  specify a language to be used
 pub enum Lang {
-    C,      // C language
-    Cpp,    // C++ language
-    Python, // Python language
-    Golang, // Golang language
+    C,        // C language
+    Cpp,      // C++ language
+    Python,   // Python language
+    Golang,   // Golang language
+    Haskell,  // Haskell language
 }
 
 use self::Lang::*;
@@ -103,6 +105,10 @@ pub fn generate(lang: Lang, input: &str) -> String {
         }
         Golang => {
             use crate::golang::brains;
+            brains(input)
+        }
+        Haskell => {
+            use crate::haskell::brains;
             brains(input)
         }
     }
