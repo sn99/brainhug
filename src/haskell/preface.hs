@@ -2,6 +2,13 @@ import Control.Monad
 import Data.Char
 import Data.Word
 
+{-
+This file was generated automatically from brainf*ck code
+
+It uses a list zipper to represent the tape and monadic functions working with 'IO (Tape)' to represent elementary operations.
+These functions are then combined via kleisli arrows to implement state-like behavior.
+-}
+
 type Cell = Word8
 type Tape = ([Cell], [Cell])
 
