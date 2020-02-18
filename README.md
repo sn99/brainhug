@@ -4,12 +4,16 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/23dcr0k5u244qd3e?svg=true)](https://ci.appveyor.com/project/sn99/brainhug)
 [![Crates.io Download](https://img.shields.io/crates/d/brainhug.svg)](https://crates.io/crates/brainhug)
 [![crate](https://img.shields.io/crates/v/brainhug.svg)](https://crates.io/crates/brainhug)
+[![Documentation](https://docs.rs/brainhug/badge.svg)](https://docs.rs/brainhug) 
 
 `brainhug` is a crate that is used to interpret brainf*ck code to any other language
 
 #### Current languages covered are :
 - [x] C
 - [x] C++
+- [x] Python
+- [x] Golang
+- [x] Haskell
 
 #### Why the name brainhug ?
 Inspired from [link](https://lists.freedesktop.org/archives/dri-devel/2018-November/198581.html)
@@ -20,7 +24,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-brainhug = "0.2.1"
+brainhug = "*"
 ```
 
 and this to your crate root:
@@ -56,113 +60,65 @@ fn main() {
 int main() {
     char tape[20000] = {0};
     char *ptr = tape;
-
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    while (*ptr) {
-        ++ptr;
-        ++*ptr;
-        ++*ptr;
-        ++*ptr;
-        ++*ptr;
+        *ptr += 8;
         while (*ptr) {
-            ++ptr;
-            ++*ptr;
-            ++*ptr;
-            ++ptr;
-            ++*ptr;
-            ++*ptr;
-            ++*ptr;
-            ++ptr;
-            ++*ptr;
-            ++*ptr;
-            ++*ptr;
-            ++ptr;
-            ++*ptr;
-            --ptr;
-            --ptr;
-            --ptr;
-            --ptr;
-            --*ptr;
+                ptr += 1;
+                *ptr += 4;
+                while (*ptr) {
+                        ptr += 1;
+                        *ptr += 2;
+                        ptr += 1;
+                        *ptr += 3;
+                        ptr += 1;
+                        *ptr += 3;
+                        ptr += 1;
+                        *ptr += 1;
+                        ptr -= 4;
+                        *ptr -= 1;
+                }
+                ptr += 1;
+                *ptr += 1;
+                ptr += 1;
+                *ptr += 1;
+                ptr += 1;
+                *ptr -= 1;
+                ptr += 2;
+                *ptr += 1;
+                while (*ptr) {
+                        ptr -= 1;
+                }
+                ptr -= 1;
+                *ptr -= 1;
         }
-        ++ptr;
-        ++*ptr;
-        ++ptr;
-        ++*ptr;
-        ++ptr;
-        --*ptr;
-        ++ptr;
-        ++ptr;
-        ++*ptr;
-        while (*ptr) {
-            --ptr;
-        }
-        --ptr;
-        --*ptr;
-    }
-    ++ptr;
-    ++ptr;
-    putchar(*ptr);
-    ++ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    putchar(*ptr);
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    putchar(*ptr);
-    putchar(*ptr);
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    putchar(*ptr);
-    ++ptr;
-    ++ptr;
-    putchar(*ptr);
-    --ptr;
-    --*ptr;
-    putchar(*ptr);
-    --ptr;
-    putchar(*ptr);
-    ++*ptr;
-    ++*ptr;
-    ++*ptr;
-    putchar(*ptr);
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    putchar(*ptr);
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    --*ptr;
-    putchar(*ptr);
-    ++ptr;
-    ++ptr;
-    ++*ptr;
-    putchar(*ptr);
-    ++ptr;
-    ++*ptr;
-    ++*ptr;
-    putchar(*ptr);
+        ptr += 2;
+        putchar(*ptr);
+        ptr += 1;
+        *ptr -= 3;
+        putchar(*ptr);
+        *ptr += 7;
+        putchar(*ptr);
+        putchar(*ptr);
+        *ptr += 3;
+        putchar(*ptr);
+        ptr += 2;
+        putchar(*ptr);
+        ptr -= 1;
+        *ptr -= 1;
+        putchar(*ptr);
+        ptr -= 1;
+        putchar(*ptr);
+        *ptr += 3;
+        putchar(*ptr);
+        *ptr -= 6;
+        putchar(*ptr);
+        *ptr -= 8;
+        putchar(*ptr);
+        ptr += 2;
+        *ptr += 1;
+        putchar(*ptr);
+        ptr += 1;
+        *ptr += 2;
+        putchar(*ptr);
 }
 ```
 

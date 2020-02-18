@@ -30,10 +30,11 @@ SOFTWARE.
 //! #### Current languages covered are :
 //!- [x] C
 //!- [x] C++
-//!- [x] lua
-
 pub mod c;
 pub mod cpp;
+pub mod python;
+pub mod golang;
+pub mod haskell;
 pub mod lua;
 
 /// tokens for brainf*ck
@@ -76,9 +77,13 @@ fn tokenize(input: &str) -> Vec<Token> {
 /// languages covered by the crate
 /// Use `Lang::` to  specify a language to be used
 pub enum Lang {
-    C,   // C language
-    Cpp, // C++ language
-    Lua, // lua language
+    C,        // C language
+    Cpp,      // C++ language
+    Python,   // Python language
+    Golang,   // Golang language
+    Haskell,  // Haskell language
+    Lua,      // lua language
+
 }
 
 use self::Lang::*;
@@ -88,11 +93,23 @@ pub fn generate(lang: Lang, input: &str) -> String {
     match lang {
         C => {
             use crate::c::brains;
-            brains(input).to_string()
+            brains(input)
         }
         Cpp => {
             use crate::cpp::brains;
-            brains(input).to_string()
+            brains(input)
+        }
+        Python => {
+            use crate::python::brains;
+            brains(input)
+        }
+        Golang => {
+            use crate::golang::brains;
+            brains(input)
+        }
+        Haskell => {
+            use crate::haskell::brains;
+            brains(input)
         }
         Lua => {
             use crate::lua::brains;
