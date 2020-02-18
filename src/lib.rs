@@ -30,14 +30,12 @@ SOFTWARE.
 //! #### Current languages covered are :
 //!- [x] C
 //!- [x] C++
-//!- [x] Python
-//!- [x] Golang
-
 pub mod c;
 pub mod cpp;
 pub mod python;
 pub mod golang;
 pub mod haskell;
+pub mod lua;
 
 /// tokens for brainf*ck
 #[derive(Debug, PartialEq, Copy, Clone)]
@@ -84,6 +82,8 @@ pub enum Lang {
     Python,   // Python language
     Golang,   // Golang language
     Haskell,  // Haskell language
+    Lua,      // lua language
+
 }
 
 use self::Lang::*;
@@ -110,6 +110,10 @@ pub fn generate(lang: Lang, input: &str) -> String {
         Haskell => {
             use crate::haskell::brains;
             brains(input)
+        }
+        Lua => {
+            use crate::lua::brains;
+            brains(input).to_string()
         }
     }
 }

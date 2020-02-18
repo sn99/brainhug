@@ -5,6 +5,10 @@ use brainhug::Lang;
 use criterion::Criterion;
 
 fn bench(c: &mut Criterion) {
+    c.bench_function("Lua", |b| {
+        let brainfuck_string = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
+        b.iter(|| brainhug::generate(Lang::Lua, brainfuck_string))
+    });
     c.bench_function("C++", |b| {
         let brainfuck_string = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
         b.iter(|| brainhug::generate(Lang::Cpp, brainfuck_string))
