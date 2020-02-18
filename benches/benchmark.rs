@@ -23,7 +23,7 @@ fn bench(c: &mut Criterion) {
     });
     c.bench_function("Golang", |b| {
         let brainfuck_string = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
-        b.iter(|| brainhug::generate(Lang::Golang, brainfuck_string))
+        b.iter(|| brainhug::generate(Lang::GoLang, brainfuck_string))
     });
     c.bench_function("Haskell", |b| {
         let brainfuck_string = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";

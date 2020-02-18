@@ -56,13 +56,13 @@ fn generate(tokens: &[Token]) -> String {
                 output.push_str(">=> putC\n");
             }
 
-            BeginLoop => {                
+            BeginLoop => {
                 for _ in 0..indent {
                     output.push_str("    ");
                 }
-                indent += 1;                
+                indent += 1;
                 // Begin a loop at the current cell
-                output.push_str(">=> while (return\n");               
+                output.push_str(">=> while (return\n");
             }
 
             EndLoop => {
