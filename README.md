@@ -12,6 +12,7 @@
 #### Current languages covered are :
 - [x] C
 - [x] C++
+- [x] C#
 - [x] Python
 - [x] Golang
 - [x] Haskell
