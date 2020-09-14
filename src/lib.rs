@@ -32,6 +32,7 @@ SOFTWARE.
 //!- [x] C++
 pub mod c;
 pub mod cpp;
+pub mod csharp;
 pub mod golang;
 pub mod haskell;
 pub mod lua;
@@ -79,6 +80,7 @@ fn tokenize(input: &str) -> Vec<Token> {
 pub enum Lang {
     C,       // C language
     Cpp,     // C++ language
+    CSharp,  // C# language
     Python,  // Python language
     GoLang,  // Golang language
     Haskell, // Haskell language
@@ -96,6 +98,10 @@ pub fn generate(lang: Lang, input: &str) -> String {
         }
         Cpp => {
             use crate::cpp::brains;
+            brains(input)
+        }
+        CSharp => {
+            use crate::csharp::brains;
             brains(input)
         }
         Python => {
