@@ -1,6 +1,6 @@
 [package]
 name = "brainhug"
-version = "0.5.0"
+version = "0.6.0"
 authors = ["sn99 <siddharthn.099@gmail.com>"]
 edition = "2018"
 description = "A simple brainf*ck translator"
@@ -9,6 +9,7 @@ license = "MIT"
 readme = "README.md"
 homepage = "https://sn99.github.io/brainhug/"
 keywords = ["brainfuck", "interpreter"]
+documentation = "https://docs.rs/brainhug"
 
 [badges]
 travis-ci = { repository = "sn99/brainhug", branch = "master" }

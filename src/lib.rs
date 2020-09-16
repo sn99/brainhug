@@ -118,7 +118,7 @@ pub fn generate(lang: Lang, input: &str) -> String {
         }
         Lua => {
             use crate::lua::brains;
-            brains(input).to_string()
+            brains(input)
         }
     }
 }

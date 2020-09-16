@@ -175,7 +175,7 @@ fn push_aritms(out: &mut String, aritms: isize) {
     if aritms > 0 {
         out.push_str(format!("tape[idx] = tape[idx] + {}\n", aritms).as_str());
     } else {
-        out.push_str(format!("tape[idx] = tape[idx] - {}\n", aritms * -1).as_str());
+        out.push_str(format!("tape[idx] = tape[idx] - {}\n", -aritms).as_str());
     }
 }
 
@@ -183,7 +183,7 @@ fn push_arrows(out: &mut String, arrows: isize) {
     if arrows > 0 {
         out.push_str(format!("idx = idx + {};\n", arrows).as_str());
     } else {
-        out.push_str(format!("idx = idx - {};\n", arrows * -1).as_str());
+        out.push_str(format!("idx = idx - {};\n", -arrows).as_str());
     }
 }
 
