@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title></title>
+    <meta charset="UTF-8" />
+</head>
+<body>
+<script>
+
+// User input is based on 'prompt' function, so you'll need to press
+// enter after you inserted the character. If you type many characters,
+// program will grab the first one
+
+function read() {
+  let input = "";
+  while (!input) {
+    input = prompt("INPUT: ");
+  }
+  return input.charCodeAt(0);
+}
+
+// Outputing to console
+
+let output = "";
+
+function write(char_code) {
+  output += String.fromCharCode(char_code);
+}
+
+// Flush is called in the end of execution and before every 'read' call.
+// If just console.log every character by itself, every character will
+// be on a new line
+function flush() {
+  console.log(output);
+  output = "";
+}
+
+let index = 0;
+let tape = new Array(20000).fill(0);
+
