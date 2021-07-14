@@ -33,6 +33,10 @@ fn bench(c: &mut Criterion) {
         let brainfuck_string = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
         b.iter(|| brainhug::generate(Lang::Haskell, brainfuck_string))
     });
+    c.bench_function("JavaScript", |b| {
+        let brainfuck_string = "++++++++[>++++[>++>+++>+++>+<<<<-]>+>+>->>+[<]<-]>>.>---.+++++++..+++.>>.<-.<.+++.------.--------.>>+.>++.";
+        b.iter(|| brainhug::generate(Lang::JavaScript, brainfuck_string))
+    });
 }
 
 criterion_group!(benches, bench);

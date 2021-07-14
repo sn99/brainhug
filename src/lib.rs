@@ -37,6 +37,7 @@ pub mod golang;
 pub mod haskell;
 pub mod lua;
 pub mod python;
+pub mod js;
 
 /// tokens for brainf*ck
 #[derive(Debug, PartialEq, Copy, Clone)]
@@ -85,6 +86,7 @@ pub enum Lang {
     GoLang,  // Golang language
     Haskell, // Haskell language
     Lua,     // lua language
+    JavaScript,
 }
 
 use self::Lang::*;
@@ -118,6 +120,10 @@ pub fn generate(lang: Lang, input: &str) -> String {
         }
         Lua => {
             use crate::lua::brains;
+            brains(input)
+        }
+        JavaScript =>  {
+            use crate::js::brains;
             brains(input)
         }
     }
