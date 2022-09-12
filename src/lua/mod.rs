@@ -37,7 +37,7 @@ fn generate(tokens: &[Token]) -> String {
             Add => {
                 if arrows != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_arrows(&mut output, arrows);
                     arrows = 0;
@@ -48,7 +48,7 @@ fn generate(tokens: &[Token]) -> String {
             Sub => {
                 if arrows != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_arrows(&mut output, arrows);
                     arrows = 0;
@@ -59,7 +59,7 @@ fn generate(tokens: &[Token]) -> String {
             Right => {
                 if aritms != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_aritms(&mut output, aritms);
                     aritms = 0;
@@ -70,7 +70,7 @@ fn generate(tokens: &[Token]) -> String {
             Left => {
                 if aritms != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_aritms(&mut output, aritms);
                     aritms = 0;
@@ -81,20 +81,20 @@ fn generate(tokens: &[Token]) -> String {
             Read => {
                 if aritms != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_aritms(&mut output, aritms);
                     aritms = 0;
                 } else if arrows != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_arrows(&mut output, arrows);
                     arrows = 0;
                 }
 
                 for _ in 0..indent {
-                    output.push_str("\t");
+                    output.push('\t');
                 }
                 // Read a single character into the selected cell
                 output.push_str("tape[idx] = io.read(1)\n");
@@ -102,19 +102,19 @@ fn generate(tokens: &[Token]) -> String {
             Write => {
                 if aritms != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_aritms(&mut output, aritms);
                     aritms = 0;
                 } else if arrows != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_arrows(&mut output, arrows);
                     arrows = 0;
                 }
                 for _ in 0..indent {
-                    output.push_str("\t");
+                    output.push('\t');
                 }
                 // Print the character at the selected cell
                 output.push_str("print(tape[idx])\n");
@@ -122,13 +122,13 @@ fn generate(tokens: &[Token]) -> String {
             BeginLoop => {
                 if aritms != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_aritms(&mut output, aritms);
                     aritms = 0;
                 } else if arrows != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_arrows(&mut output, arrows);
                     arrows = 0;
@@ -136,7 +136,7 @@ fn generate(tokens: &[Token]) -> String {
                 indent += 1;
 
                 for _ in 0..(indent - 1) {
-                    output.push_str("\t");
+                    output.push('\t');
                 }
                 // Begin a loop at the current cell
                 output.push_str("while tape[idx] do\n");
@@ -144,13 +144,13 @@ fn generate(tokens: &[Token]) -> String {
             EndLoop => {
                 if aritms != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_aritms(&mut output, aritms);
                     aritms = 0;
                 } else if arrows != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_arrows(&mut output, arrows);
                     arrows = 0;
@@ -158,7 +158,7 @@ fn generate(tokens: &[Token]) -> String {
                 indent -= 1;
 
                 for _ in 0..indent {
-                    output.push_str("\t");
+                    output.push('\t');
                 }
                 // Close a loop
                 output.push_str("end\n");

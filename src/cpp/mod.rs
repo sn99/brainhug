@@ -34,42 +34,42 @@ fn generate(tokens: &[Token]) -> String {
         match token {
             Add => {
                 for _ in 0..indent {
-                    output.push_str("\t");
+                    output.push('\t');
                 }
                 // Increment the value at the selected cell
                 output.push_str("++*ptr;\n");
             }
             Sub => {
                 for _ in 0..indent {
-                    output.push_str("\t");
+                    output.push('\t');
                 }
                 // Decrement the value at the selected cell
                 output.push_str("--*ptr;\n");
             }
             Right => {
                 for _ in 0..indent {
-                    output.push_str("\t");
+                    output.push('\t');
                 }
                 // Change our selected cell to the next to the right
                 output.push_str("++ptr;\n");
             }
             Left => {
                 for _ in 0..indent {
-                    output.push_str("\t");
+                    output.push('\t');
                 }
                 // Change our selected cell to the next to the left
                 output.push_str("--ptr;\n");
             }
             Read => {
                 for _ in 0..indent {
-                    output.push_str("\t");
+                    output.push('\t');
                 }
                 // Read a single character into the selected cell
                 output.push_str("*ptr = getchar();\n");
             }
             Write => {
                 for _ in 0..indent {
-                    output.push_str("\t");
+                    output.push('\t');
                 }
                 // Print the character at the selected cell
                 output.push_str("putchar(*ptr);\n");
@@ -78,7 +78,7 @@ fn generate(tokens: &[Token]) -> String {
                 indent += 1;
 
                 for _ in 0..(indent - 1) {
-                    output.push_str("\t");
+                    output.push('\t');
                 }
                 // Begin a loop at the current cell
                 output.push_str("while (*ptr) {\n");
@@ -87,7 +87,7 @@ fn generate(tokens: &[Token]) -> String {
                 indent -= 1;
 
                 for _ in 0..indent {
-                    output.push_str("\t");
+                    output.push('\t');
                 }
                 // Close a loop
                 output.push_str("}\n");

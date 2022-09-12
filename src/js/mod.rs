@@ -1,4 +1,3 @@
-
 // Interpreted code is intended to run in your web browser,
 // support for NodeJS is not implemented and probably won't
 // be implemented
@@ -19,24 +18,12 @@ fn generate(tokens: &[Token]) -> String {
 
     for &token in tokens {
         match token {
-            Add => {
-                output += &("  ".repeat(indent) + "tape[index] += 1;\n")
-            }
-            Sub => {
-                output += &("  ".repeat(indent) + "tape[index] -= 1;\n")
-            }
-            Right => {
-                output += &("  ".repeat(indent) + "index += 1;\n")
-            }
-            Left => {
-                output += &("  ".repeat(indent) + "index -= 1;\n")
-            }
-            Read => {
-                output += &("  ".repeat(indent) + "tape[index] = read();\n")
-            }
-            Write => {
-                output += &("  ".repeat(indent) + "write(tape[index]);\n")
-            }
+            Add => output += &("  ".repeat(indent) + "tape[index] += 1;\n"),
+            Sub => output += &("  ".repeat(indent) + "tape[index] -= 1;\n"),
+            Right => output += &("  ".repeat(indent) + "index += 1;\n"),
+            Left => output += &("  ".repeat(indent) + "index -= 1;\n"),
+            Read => output += &("  ".repeat(indent) + "tape[index] = read();\n"),
+            Write => output += &("  ".repeat(indent) + "write(tape[index]);\n"),
             BeginLoop => {
                 output += &("  ".repeat(indent) + "while (tape[index]) {\n");
                 indent += 1;

@@ -42,7 +42,7 @@ fn get_indent(indent: u32) -> String {
 }
 
 fn flush(state: &State, output: &mut String, indent: &str) {
-    output.push_str(&indent[..]);
+    output.push_str(indent);
     match state {
         State::Alter(x) if *x > 0 => output.push_str(&format!("tape[index] += {}\n", x)[..]),
         State::Alter(x) if *x < 0 => output.push_str(&format!("tape[index] -= {}\n", -x)[..]),

@@ -37,7 +37,7 @@ fn generate(tokens: &[Token]) -> String {
             Add => {
                 if arrows != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_arrows(&mut output, arrows);
                     arrows = 0;
@@ -48,7 +48,7 @@ fn generate(tokens: &[Token]) -> String {
             Sub => {
                 if arrows != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_arrows(&mut output, arrows);
                     arrows = 0;
@@ -59,7 +59,7 @@ fn generate(tokens: &[Token]) -> String {
             Right => {
                 if aritms != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_aritms(&mut output, aritms);
                     aritms = 0;
@@ -70,7 +70,7 @@ fn generate(tokens: &[Token]) -> String {
             Left => {
                 if aritms != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_aritms(&mut output, aritms);
                     aritms = 0;
@@ -81,13 +81,13 @@ fn generate(tokens: &[Token]) -> String {
             others => {
                 if aritms != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_aritms(&mut output, aritms);
                     aritms = 0;
                 } else if arrows != 0 {
                     for _ in 0..indent {
-                        output.push_str("\t");
+                        output.push('\t');
                     }
                     push_arrows(&mut output, arrows);
                     arrows = 0;
@@ -97,21 +97,21 @@ fn generate(tokens: &[Token]) -> String {
                         indent -= 1;
 
                         for _ in 0..indent {
-                            output.push_str("\t");
+                            output.push('\t');
                         }
                         // Close a loop
                         output.push_str("}\n");
                     }
                     Read => {
                         for _ in 0..indent {
-                            output.push_str("\t");
+                            output.push('\t');
                         }
                         // Read a single character into the selected cell
                         output.push_str("*ptr = getchar();\n");
                     }
                     Write => {
                         for _ in 0..indent {
-                            output.push_str("\t");
+                            output.push('\t');
                         }
                         // Print the character at the selected cell
                         output.push_str("putchar(*ptr);\n");
@@ -120,7 +120,7 @@ fn generate(tokens: &[Token]) -> String {
                         indent += 1;
 
                         for _ in 0..(indent - 1) {
-                            output.push_str("\t");
+                            output.push('\t');
                         }
                         // Begin a loop at the current cell
                         output.push_str("while (*ptr) {\n");

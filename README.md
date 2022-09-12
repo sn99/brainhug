@@ -2,14 +2,14 @@
 
 [![Build Status](https://travis-ci.com/sn99/brainhug.svg?branch=master)](https://travis-ci.com/sn99/brainhug)
 [![Build status](https://ci.appveyor.com/api/projects/status/23dcr0k5u244qd3e?svg=true)](https://ci.appveyor.com/project/sn99/brainhug)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=sn99/brainhug)](https://dependabot.com)
 [![Crates.io Download](https://img.shields.io/crates/d/brainhug.svg)](https://crates.io/crates/brainhug)
 [![crate](https://img.shields.io/crates/v/brainhug.svg)](https://crates.io/crates/brainhug)
-[![Documentation](https://docs.rs/brainhug/badge.svg)](https://docs.rs/brainhug) 
+[![Documentation](https://docs.rs/brainhug/badge.svg)](https://docs.rs/brainhug)
 
 `brainhug` is a crate that is used to interpret brainf*ck code to any other language
 
 #### Current languages covered are :
+
 - [x] C
 - [x] C++
 - [x] C#
@@ -20,6 +20,7 @@
 - [X] JavaScript
 
 #### Why the name brainhug ?
+
 Inspired from [link](https://lists.freedesktop.org/archives/dri-devel/2018-November/198581.html)
 
 ## Usage
@@ -35,16 +36,19 @@ and this to your crate root:
 
 ```rust
 extern crate brainhug;
+
 use brainhug::Lang;
 ```
 
 ## Contributing
+
 Read [contributing](CONTRIBUTING.md) for Details
 
 ## Example
 
 ```rust
 extern crate brainhug;
+
 use brainhug::Lang;
 
 fn main() {
@@ -130,4 +134,4 @@ int main() {
 
 Licensed under
 
- * MIT license ([LICENSE.md](LICENSE.md) or http://opensource.org/licenses/MIT)
+* MIT license ([LICENSE.md](LICENSE.md) or http://opensource.org/licenses/MIT)

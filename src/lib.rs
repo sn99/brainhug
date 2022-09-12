@@ -35,9 +35,9 @@ pub mod cpp;
 pub mod csharp;
 pub mod golang;
 pub mod haskell;
+pub mod js;
 pub mod lua;
 pub mod python;
-pub mod js;
 
 /// tokens for brainf*ck
 #[derive(Debug, PartialEq, Copy, Clone)]
@@ -122,7 +122,7 @@ pub fn generate(lang: Lang, input: &str) -> String {
             use crate::lua::brains;
             brains(input)
         }
-        JavaScript =>  {
+        JavaScript => {
             use crate::js::brains;
             brains(input)
         }
